@@ -1,0 +1,21 @@
+程序编译链接原理
+预处理：.c->.i
+gcc -E hello.c -o hello.i
+
+编译： .i->.s
+gcc -S hello.i -o hello.s
+
+汇编：.s->.o
+gcc -c hello.s -o hello.o
+
+链接：.o->可执行程序app
+gcc hello.o -o app
+
+宏定义
+常量
+变量
+进制转换
+运算符
+表达式
+
+

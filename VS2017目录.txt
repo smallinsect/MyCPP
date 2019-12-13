@@ -1,0 +1,178 @@
+
+
+system 执行系统指令
+
+C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Visual Studio 2017\Visual Studio Tools\VC
+
+使用
+适用于 VS 2017 的 x64 本机工具命令提示
+编译程序 就是将C文件编译成exe可执行文件
+指令 cl 1.c
+
+//\Program Files (x86) 64位前 (x86)要有空格
+system("\"D:\\Program Files (x86)\\Tencent\\QQ\\Bin\\QQScLauncher.exe\"");
+
+//关闭进程命令
+system("taskkill /f /im QQ.exe");// /f强制 /im进程名
+
+//指令并行 &让tasklist和pause并行执行
+system("tasklist & pause");
+
+system("ipconfig & pause");
+
+//显示的进程信息 保存到文件里
+system("tasklist > E:\\1.txt");
+system("C:\\1.txt");
+
+//查看文件内容
+type 1.txt
+
+title AK//改变标题
+color 3d//改变颜色
+color 4d & title 1123//并行指令
+appwiz.cpl//管理应用程序 卸载 修复 程序
+certmgr.msc//证书管理应用程序
+charmap//启动字符映射表
+chkdsk//检查磁盘
+clearmrg//打开磁盘清理
+shutdown -r -t 600//600秒后，电脑重启
+shutdown -a//取消定时关机
+colorcpl//颜色管理，配置显示器和打印机等中的色彩
+credwiz//备份或还原存储的用户名和密码
+dcomcnfg//系统组件服务
+comexp.msc//系统组件服务
+control//控制面板
+Dccw//显示颜色校准
+devmgmt.msc//设备管理器
+desk.cpl//屏幕分辨率
+dfrgui//优化驱动器
+dialer//电话拨号程序
+diskmgmt//磁盘管理
+dvdplay//DVD播放器
+dxdiag//检查directX信息
+eudcedit//造字程序
+eventvwr//事件查看器
+explorer//打开资源管理器
+Firewall.cpl//window防火墙
+fxsvover//船政封面编辑器
+fsmgmt.msc//共享文件夹管理
+gpedit.msc//组策略
+hdwwiz.cpl//设备管理器
+inetcpl.cpl//internet属性
+intl.cpl//区域
+iexpress//木马捆绑工具，系统自带
+joy.cpl//游戏控制器
+logoff//注销命令
+lusrmgr.msc//本地用户和组
+lpksetup//语言包安装删除向导，安装向导会提示下载语言包
+lusrmgr.msc//本机用户和组
+main.cpl//鼠标属性
+mmsys.cpl//声音
+magnify//放大镜使用程序
+mem.exe//显示内存信息
+MdSched//windows内存争端程序
+mmc//打开控制台
+mobsync//同步命令
+mplayer2//简易windows media player
+MSConfig.exe//系统配置实用程序
+msdt//微软支持诊断工具
+msinfo32//系统信息
+mspaint//画图
+msra//windows远程协助
+mstsc//远程桌面连接
+napclcfg.msc//客户端配置
+ncpa.cpl//网络连接
+narrator//屏幕讲述
+netplwiz//高级用户账户控制面板，设置登录安全相关的选项
+netstat//an命令检测接口
+notepad//打开记事本
+nslookup//IP地址侦测器
+odbcad32//ODBC数据源管理器
+OptionalFeatures//打开管理windows功能
+osk//打开屏幕键盘
+perfmon.msc//计算机性能检测器
+perfmon//计算机性能检测器
+PowerShell//提供强大的远程处理能力
+printmanagment.msc//打印管理
+powercfg.cpl//电源选项
+psr//问题步骤记录器
+rasphone//网络连接
+recdisc//创建系统修复光盘
+resmon//资源监视器
+rstrui//系统还原
+regedit.exe//租车表
+regedit32//注册表编辑
+rsop.msc//策略组结果集
+sdclt//备份状态与配置，就是查看系统是否已备份
+secpol.msc//本地安全策略
+services.msc//本地服务设置
+sfc/scannow//烧苗错误并复原windows文件保护
+sfc.exe//系统文件检查器
+shrpubw//创建共享文件夹
+sigverif//文件签名验证程序
+slui//windows激活，查看系统激活信息
+slmgr.vbs -dlv //显示详细的许可证信息
+slmgr.vbs -dli //显示许可证信息
+slmgr.vbs -xpr //当前许可证截止日期
+slmgr.vbs -dti //显示安装ID 以进行脱机
+slmgr.vbs -ipk //安装产品密钥
+slmgr.vbs -ato //激活windows
+slmgr.vbs -vpky //从注册表中清除产品密钥
+slmgr.vbs -ilc //安装许可证
+snippingtool//截图工具
+soundrecorder//录音机，没有录音时间的限制
+stikynot//便签
+sysdm.cpl//系统属性
+sysedit//系统配置编辑器
+syskey//系统加密，一旦加密就不能揭开，保护系统的双重密码
+taskmgr//任务管理器
+TM任务管理新版
+taskschd.msc//任务计划程序
+timedata.cpl//日期和时间
+UserAccountControlSettings用户账户控制设置
+utilman//辅助工具管理器
+wf.msc//高级安全windows防火墙
+wfs//windows传真和扫描
+siaacomgr//扫描仪和照相机向导
+winver//关闭windows
+wmimgmt.msc//打开windows管理体系结构
+write//写字板
+wscui.cpl//操作中心
+wscript//windows脚本宿主设置
+wuapp//windows更新
+gpedit.msc//策略组
+sndrec32//录音机
+
+nslookup//IP地址侦测器
+explorer//打开资源管理器
+logoff//注销命令
+shutdown//关机命令
+lusrmgr.msc//本机用户和组
+services.msc//本地服务设置
+
+tracert www.baidu.com//跟踪显示路由
+
+
+start//异步
+start calc//异步打开3个计时器
+start calc
+start calc
+
+more//用于大数据打开，翻页查看
+type//用于查看大数据，也会全部加载
+
+route print//显示出IP路由
+
+
+
+
+
+
+
+
+
+
+
+
+
+
