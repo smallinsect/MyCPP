@@ -1,0 +1,67 @@
+
+开启一个终端
+CTR+ALT+T
+
+关闭一个终端
+ALT+F4
+
+shell：单词语意贝壳，计算机语义命令解析器
+shell提示符
+#：一般表示你是超级用户
+$：你是普通用户
+
+清除屏幕
+clear 快捷键ctrl+l
+
+ls 查看当前目录
+pwd 查看路径
+
+自动补齐Tab键
+cd 进入某个文件路径
+
+根目录
+/ 称之为根目录
+home 用户目录
+root 根目录路
+
+mkdir 创建一个目录
+rmdir 删空目录
+rm -r 删除费控目录
+rm 删除一个文件
+
+;8P;8P
+切换到字符控制台
+CTR+ALT+SHIFT+(F1-F6)
+切回图形界面
+ALT+F7
+
+ps aux 显示进程信息
+killall 进程名字 关闭进程
+kill -9 进程号
+kill -SIGKILL 进程号
+
+> 输出重定向
+find / -name "*.vai"查找文件
+find 路径 -name "文件名"
+
+grep "fdafd" ./* -R(-R递归查找的意思)
+
+压缩命令
+z gzip 压缩算法
+c create 创建一个包
+v view 显示信息 
+f file 文件名
+tar zcvf test.tar.gz test
+解包
+x 解压包
+tar zxvf test.tar.gz
+
+bz2压缩
+j 一种压缩算法
+tar jcvf test.tar.bz2 test
+解包
+tar jxvf test.tar.bz2
+
+
+
+

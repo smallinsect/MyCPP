@@ -11,11 +11,119 @@ gcc -c hello.s -o hello.o
 链接：.o->可执行程序app
 gcc hello.o -o app
 
-宏定义
+编译调试程序
+gcc -g test.cpp -o test.exe
+启动调式test.exe程序
+gdb test.exe
+start 开始调试
+
+
+3G~4G
+        操作系统核心kernel  不能读写
+        栈存储区            可读可写
+        共享库/动态库/libc  可读不可写
+        堆存储区/malloc，new    可读可写
+0G~3G
+        BSS区/未初始化的全局变量    可读可写 static局部变量
+        DATA/已初始化的全局变量     可读可写
+        RO.DATA区/存放只读数据  可读不可写
+        TEXT去/存放机器二进制指令   可读不可写
+
+char *dest;//野指针
+
+strchr
+strstr
+strtok
+
+作用域：可被有效访问范围。
+生命周期：变量存储空间
+
+const 在编译的时候提醒
+const int *p = &b;//b里的内容不能修改，p能修改。
+int *const p = &b;//p不能修改，b里的内容可修改。
+const int *const p = &b;//p不能修改，b里内容不能修改。
+extern 告诉文件 该变量 不在本文件定义
+static 局部变量 局部函数
+volatile 修饰
+register 修饰的变量，使用寄存器
+
+void fun(int a[][10], int l, int c){}
+void fun(int (*a)[10], int l, int c){}
+main(){
+    int a[6][10];
+    fun(a, 6, 10);
+}
+
+宏定义 #
 常量
 变量
 进制转换
+十进制：0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11
+二进制：0, 1, 10, 11, 100, 101
+八进制：0, 1, 2, 3, 4, 5, 6, 7, 10, 11, 12
+十六进制： 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, A, B, C, D, E, F, 10
+
+十进制小数的转换为二进制：方法是乘以2取证，顺序排列，以（0.625）10为例，如下
+0.625*2=1.25 取1
+0.25*2=0.5   取0
+0.5*2=1      取1
+(0.625)10=(0.101)2
+(0.25)10=(0.01)2
+(0.5)10=(0.1)2
+
+bit位
+8bit=1BYTE 一个字节 每个字节拥有一个地址
+
+1和-1
+源码         反码        补码
+0000 0001   0000 0001   0000 0001 正数的反码、补码都等于源码
+1000 0001   1111 1110   1111 1111 负数的补码等于源码加1
+
+0和-0
+0000 0000   0000 0000   0000 0000
+1000 0000   1111 1111   0000 0000
+
+
+long l = 1L;
+long long ll = 11LL;
+
+float 有效位6~7位
+double 有效位15~16位
+
+#include <limits.h>
+char CHAR_MIN CHAR_MAX
+short SHRT_MIN SHRT_MAX
+int INT_MIN INT_MAX
+long LONG_MIN LONG_MAX
+long long LLONG_MIN LLONG_MAX
+
+float FLT_MIN FLT_MAX
+double DBL_MIN DBL_MAX
+long double LDBL_MIN LDBL_MAX
+
 运算符
+
+
 表达式
+短路表达式
+
+条件运算符示例 自右向左
+例如：若a=5,b=6,c=7,d=8，求表达式
+    a>b?a:c>d?c:d的值
+按照条件运算符的结合性表达式可改写为：
+    a>b?a:(c>d?c:d)
+因此结果为：8
+
+
+隐式类型转换 显示类型转换
+
+%d十进制
+%o八进制
+%x十六进制
+%u无符号
+%e
+%g
+%ld 
+%lld 
 
 
