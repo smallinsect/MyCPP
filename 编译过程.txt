@@ -17,6 +17,9 @@ gcc -g test.cpp -o test.exe
 gdb test.exe
 start 开始调试
 
+反汇编
+objdump -dSsx test.exe > file
+
 
 3G~4G
         操作系统核心kernel  不能读写
@@ -53,6 +56,21 @@ main(){
     int a[6][10];
     fun(a, 6, 10);
 }
+
+
+int funcA(int a, int b){}
+int (*p_fun)(int, int);//函数指针定义
+p_fun = funcA;//函数指针赋值
+
+                sizeof(arr)/sizeof(*arr) arr+1
+char arr[][10]; 40/4                        4字节
+char *arr[];    4/4                         4字节
+char **arr;     
+char arr[][];
+char (*p)(void);4/无大小                     无意义
+char (*p)[20];  4/20                        加过20个字节
+
+
 
 宏定义 #
 常量
@@ -125,5 +143,109 @@ long double LDBL_MIN LDBL_MAX
 %g
 %ld 
 %lld 
+
+匿名结构体
+struct {
+
+} a, b;
+
+共用/联合体(union)
+union ITEM{
+    int num;
+    char sex;
+    short score;
+};
+
+union ITEM a;
+sizeof(a);//4字节
+
+枚举
+enum ITEM{ RED, BLUE, BLACK};
+
+enum ITEM item;
+item = RED;
+
+#include <unistd.h>
+
+#include <stdlib.h>
+
+void *malloc(size_t size);
+void free(void *ptr);
+void *calloc(size_t nmemb, size_t size);
+void *realloc(void *ptr, size_t size);
+
+内存泄露
+
+文件类型
+stream 流文件
+设备文件
+网口 串口 usb口
+
+stdin标准输入
+stdout标准输出
+stderr标准出错
+
+刷新缓冲区 \n
+main正常退出
+fflush(stdout);
+当缓冲区满了 就会刷新缓冲区
+
+文件指针
+FILE *pfile;
+//返回文件流指针 打开文件路径 打开文件模式
+FILE *fopen(const char *path, const char *mode);
+
+pfile = fopen("", "w");
+fprintf(pfile, "ddd%daaa", 10);
+
+//
+FILE *fdopen(int fd, const char *mode);
+//
+FILE *freopen(const char *path, const char *mode, FILE *stream);
+
+//关闭文件指针
+fclose(pfile);
+
+FILE
+当前读写指针位置
+buffer指针------>buffer默认8192
+文件索引指针----->索引磁盘文件
+文件模式 
+r打开文件读取文件
+w打开文件写，文件不存在，创建文件。
+a追加写打开文件，如果文件不存在，创建文件。
+r+可读文件可写文件，如果文件不存在，也不创建文件。
+w+可读可写打开文件，如果文件不存在，则创建，如果存在，则截断。
+a+可读可写追加文件，如果文件不存在，则创建。
+rb操作文件是二进制文件， 其他含义同r
+wb
+ab
+
+一个程序打开文件上限1024个
+fgets 读取文件一行
+fputs
+fgetc
+fputc
+fwrite(&a, sizeof(a), 1, pf);
+fread(&b, sizeof(b), 1, pf);
+fflush(pf);//刷新缓冲区 刷新文件指针的缓冲区
+
+SEEK_SET 文件起始位置
+SEEK_CUR 文件当前位置
+SEEK_END 文件末尾位置
+
+fseek(pf, 0, SEEK_SET);//把文件指针移到起始位置，偏移量0
+fseek(pf, 100, SEEK_END);//把文件指针移到末尾，偏移量100个字节，给文件拓展。
+
+rewind(pf);//把文件指针移到文件开头
+
+ftell(pf);//放回当前读写的位置
+
+feof//文件末尾，返回1
+
+
+
+
+
 
 

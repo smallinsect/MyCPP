@@ -46,6 +46,8 @@ int main(int argc, char *argv[]) {
 	char str[] = "hello wolrd";
 	printf("%s\n", strstr(str, "wo"));
 
+	malloc(1024*1024*100);
+
 	system("pause");
 	return 0;
 }

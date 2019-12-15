@@ -1,6 +1,6 @@
 /*********************************
 **函数比较的函数指针的类型定义
-**	typedef double(*lpcomp)(void*, void*);
+**	typedef int(*lpcomp)(void*, void*);
 **任意两个相同类型交换数据
 **	void mySwap(void *v1, void *v2, uint size);
 **任意数组排序 选择排序
@@ -13,7 +13,7 @@
 
 typedef unsigned int uint;
 //函数比较的函数指针的类型定义
-typedef double(*lpcomp)(void*, void*);
+typedef int(*lpcomp)(void*, void*);
 //任意两个相同类型交换数据
 void mySwap(void *v1, void *v2, uint size);
 //任意数组排序 选择排序
@@ -24,20 +24,20 @@ struct FRUIT {
 	char name[64];
 };
 //数组的比较函数
-double com1(void *v1, void *v2) {
+int com1(void *v1, void *v2) {
 	int *i1 = (int*)v1;
 	int *i2 = (int*)v2;
-	return *i1 - *i2;
+	return *i1 > *i2;
 }
 //结构的比较函数 grade比较
-double com2(void *v1, void *v2) {
+int com2(void *v1, void *v2) {
 	FRUIT *fruit1 = (FRUIT*)v1;
 	FRUIT *fruit2 = (FRUIT*)v2;
-	return fruit1->grade - fruit2->grade;
+	return fruit1->grade > fruit2->grade;
 }
 
 //结构的比较函数 name比较
-double com3(void *v1, void *v2) {
+int com3(void *v1, void *v2) {
 	FRUIT *fruit1 = (FRUIT*)v1;
 	FRUIT *fruit2 = (FRUIT*)v2;
 	return strcmp(fruit1->name, fruit2->name);
