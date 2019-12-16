@@ -1,0 +1,22 @@
+﻿REGEDIT
+; 此 .REG 文件可能由 SETUP 程序使用。
+;   如果 SETUP 程序不可用，则以下条目将
+;   CWinApp::RegisterShellFileTypes 和 COleObjectFactory::UpdateRegistryAll
+;   在 InitInstance 中对下列项自动进行注册。
+
+HKEY_CLASSES_ROOT\.CPP = DemoMFC03.Document
+HKEY_CLASSES_ROOT\DemoMFC03.Document\shell\open\command = DemoMFC03.EXE %1
+HKEY_CLASSES_ROOT\DemoMFC03.Document\shell\open\ddeexec = [open("%1")]
+HKEY_CLASSES_ROOT\DemoMFC03.Document\shell\open\ddeexec\application = DemoMFC03
+    ; 注意: 此应用程序是可选的
+    ;  (默认为“命令”中的应用程序名)
+
+HKEY_CLASSES_ROOT\DemoMFC03.Document = DemoMFC03.Document
+
+
+HKEY_CLASSES_ROOT\DemoMFC03.Document\CLSID = {4145fed4-dc84-439b-b3bb-db4cd31a1dea}
+
+HKEY_CLASSES_ROOT\CLSID\{4145fed4-dc84-439b-b3bb-db4cd31a1dea} = DemoMFC03.Document
+HKEY_CLASSES_ROOT\CLSID\{4145fed4-dc84-439b-b3bb-db4cd31a1dea}\ProgId = DemoMFC03.Document
+
+HKEY_CLASSES_ROOT\CLSID\{4145fed4-dc84-439b-b3bb-db4cd31a1dea}\LocalServer32 = DemoMFC03.EXE

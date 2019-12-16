@@ -1,0 +1,29 @@
+﻿// DemoMFC03.idl: DemoMFC03.exe 的类型库源
+
+// 此文件将由 MIDL 编译器处理以产生
+// 类型库(DemoMFC03.tlb)。
+
+[ uuid(2024bd62-b47f-4291-b0da-474f17ad13d6), version(1.0) ]
+library DemoMFC03
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	//  CDemoMFC03Doc 的主调度接口
+
+	[ uuid(c33bbc6d-e547-45c5-9d31-ed55f8073f5a) ]
+	dispinterface IDemoMFC03
+	{
+		properties:
+
+		methods:
+	};
+
+	//  CDemoMFC03Doc 的类信息
+
+	[ uuid(4145fed4-dc84-439b-b3bb-db4cd31a1dea) ]
+	coclass CDemoMFC03Doc
+	{
+		[default] dispinterface IDemoMFC03;
+	};
+};
