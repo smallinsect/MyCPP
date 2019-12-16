@@ -17,7 +17,8 @@ Demo05
     Hook拦截MessageBoxW函数
 Demo06
     字符串，二级指针。
-
+Demo07
+    函数的指针数组
 
 DemoMFC03
     CPPIDE G++ win++编译
