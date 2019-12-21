@@ -1,5 +1,6 @@
 
 
+
 Demo03
     多线程
 Demo04
@@ -23,10 +24,35 @@ Demo07
 DemoMFC03
     CPPIDE G++ win++编译
 
+结构体高级应用
+    结构体字节对齐
+
+	wchar_t ch = '我';//汉字字符
+	setlocale(LC_ALL, "chs");//设定中文
+	wprintf(L"%wc", ch);
+
+二进制加密 异或 +1 -1
+
+C:\Users\small>for /l %i in (1,1,5) do calc
+打开五次计算器
+taskkill /f /im 进程名
+
+FILE *fp = fopen("1.txt", "r");
+while(!feof(fp)){
+    char ch = fgetc(fp);
+    if(ch == '\n'){
+        printf("<br/>");
+    }
+    putchar(ch);
+}
 
 数组作为参数退化为一级指针
 指针作为参数会退化为一个二级指针
 函数对于数组没有副本机制
+
+深拷贝 拷贝内存里面的内容
+浅拷贝 地址赋值，共享内存
+
 
 指针
 一级指针 

@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <windows.h>
+
 #include <limits.h>
 #include <iostream>
 using namespace std;
@@ -43,6 +45,42 @@ int mymaxA(int *a[4]) {
 	return 0;
 }
 
+class A {
+public:
+	//virtual void funA() {}
+};
+
+class B {
+public:
+	virtual void funB() {}
+};
+
+class C {
+public:
+	virtual void funC() {}
+};
+
+class D : public A, public B, public C {
+public:
+	//virtual void funA() {}
+	virtual void funB() {}
+	virtual void funC() {}
+};
+
+class E : public D, public B {
+public:
+};
+
+class F {
+public:
+	F() {
+		cout << "F()" << endl;
+	}
+	~F() {
+		cout << "~F()" << endl;
+	}
+};
+
 int main(int argc, char *argv[]) {
 
 	//int(*p[4])(int a, int b) = { myadd, mysub, mymul, mydiv};
@@ -78,11 +116,11 @@ int main(int argc, char *argv[]) {
 	//printf("%p\n", a+1);
 	//printf("%p\n", &a + 1);
 
-	int a = 10;
-	int b = 20;
+	//int a = 10;
+	//int b = 20;
 
 	//const int *p = &a;//常量指针 指向常量的指针 数据只读，地址可移动，可以看别人的信息
-	int const *p = &a;//常量指针 指针是常量
+	//int const *p = &a;//常量指针 指针是常量
 
 	//int * const p = &a;//指针常量 指针是常量 数据可读可写
 	//const int* const p;//常量指针常量 数据 数据只读，不可写，只限定看自己数据
@@ -90,6 +128,45 @@ int main(int argc, char *argv[]) {
 
 	//*p = 20;
 	//p = &b;
+
+	//int *p = (int*)malloc(40*sizeof(int));
+	////数组指针
+	//int(*pp)[10] = (int(*)[10])p;
+	//printf("%d\n", sizeof(pp));
+	////指针数组
+	//int *pp1[10];
+	//printf("%d\n", sizeof(pp1));
+
+	//获取文件大小
+	//获取文件内容行数
+
+	//char str[100] = "for /l %i in (1,1,5) do calc";
+	//const char *p = "for /l %i in (1,1,5) do calc";
+
+	//cout << sizeof(A) << endl;
+	//cout << sizeof(B) << endl;
+	//cout << sizeof(C) << endl;
+	//cout << sizeof(D) << endl;
+	//cout << sizeof(E) << endl;
+
+	//F *a = new F();
+	//free(a);
+	//a = (F*)malloc(sizeof(F));
+	//delete a;
+
+	//cout << sizeof(long double) << endl;
+
+	//wchar_t ch = '我';//汉字字符
+	//const wchar_t *pch = L"呵呵呵呵";
+	//setlocale(LC_ALL, "zh-CN");//设定中文
+	//wprintf(L"%lc", ch);
+	//wprintf(L"%ls", pch);
+	//putwchar(ch);
+	//_putws(pch);
+
+	FILE *fp;
+
+	stdin->_Placeholder;
 
 	system("pause");
 	return 0;
