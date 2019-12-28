@@ -6,6 +6,7 @@
 
 #include <limits.h>
 #include <iostream>
+#include <afx.h>
 using namespace std;
 
 int myadd(int a, int b) {
@@ -47,8 +48,19 @@ int mymaxA(int *a[4]) {
 
 class A {
 public:
+	//A() = delete;
+	A(const A& a);
+	A& operator=(const A& a) {
+		return *this;
+	}
+private:
+	//A();
+public:
 	//virtual void funA() {}
+	static int a;
 };
+
+int A::a = 10;
 
 class B {
 public:
@@ -81,7 +93,8 @@ public:
 	}
 };
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) 
+{
 
 	//int(*p[4])(int a, int b) = { myadd, mysub, mymul, mydiv};
 	//for (int i = 0; i < 4; ++i) {
@@ -164,9 +177,26 @@ int main(int argc, char *argv[]) {
 	//putwchar(ch);
 	//_putws(pch);
 
-	FILE *fp;
+	//FILE *fp;
 
-	stdin->_Placeholder;
+	//stdin->_Placeholder;
+
+	//A a;
+	//cout << A::a << endl;
+	//D::a = 11;
+	//cout << A::a << endl;
+
+
+	//三目运算符 两个操作符类型要一样
+	//cout << (true ? 1 : "1") << endl;
+
+	//unsigned int const size = 100;
+	//char str1[size];
+
+	//A* a = new A();
+
+	//CFile file(TEXT("C:\\1.txt"), CFile::modeRead);
+
 
 	system("pause");
 	return 0;
