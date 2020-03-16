@@ -20,6 +20,8 @@ Demo06
     字符串，二级指针。
 Demo07
     函数的指针数组
+Demo08
+    boost库
 
 DemoMFC03
     CPPIDE G++ win++编译
