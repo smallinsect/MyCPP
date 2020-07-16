@@ -37,8 +37,12 @@ MoveFile
 ```
 CreateFile
 OpenFile
-CloseFile
+CloseHandle
 ```
+
+## 获取文件属性
+
+文件大小
 
 
 
