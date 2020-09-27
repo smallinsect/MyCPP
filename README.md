@@ -8,3 +8,8 @@ $(SolutionDir)..\bin\$(Platform)\$(Configuration)\
 中间目录  
 $(SolutionDir)..\bintemp\$(Platform)\$(ProjectName)\$(Configuration)\
 
+# MFC
+
+在线文档
+
+- https://docs.microsoft.com/en-us/cpp/mfc/reference/cbitmap-class?view=vs-2019
