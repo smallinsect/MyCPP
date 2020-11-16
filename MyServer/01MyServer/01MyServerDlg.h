@@ -4,7 +4,6 @@
 
 #pragma once
 
-
 // CMy01MyServerDlg 对话框
 class CMy01MyServerDlg : public CDialogEx
 {
@@ -20,8 +19,6 @@ public:
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
 
-public:
-	static UINT ThreadProc(LPVOID lpParam);
 
 // 实现
 protected:
@@ -37,4 +34,15 @@ public:
 	afx_msg void OnBnClickedStart();
 	afx_msg void OnBnClickedStop();
 	afx_msg void OnBnClickedSend();
+
+public:
+	static UINT ThreadProc(LPVOID lpParam);
+	void WinSockInit();
+
+private:
+	SOCKET m_ServerSocket;
+	sockaddr_in m_Addr;
+
+	SOCKET m_ClientSocket;
+	bool m_Exit;
 };

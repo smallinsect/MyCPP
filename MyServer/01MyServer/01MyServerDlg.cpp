@@ -12,6 +12,7 @@
 #define new DEBUG_NEW
 #endif
 
+#define WM_SOCKET WM_USER+100
 
 // 用于应用程序“关于”菜单项的 CAboutDlg 对话框
 
@@ -175,7 +176,107 @@ void CMy01MyServerDlg::OnBnClickedSend()
 	// TODO: 在此添加控件通知处理程序代码
 }
 
+void CMy01MyServerDlg::WinSockInit() {
+	WSADATA wd;
+	if (WSAStartup(MAKEWORD(2, 2), &wd) != 0) {
+		AfxMessageBox(TEXT("[server] WSAStartup error ...%d"));
+		return;
+	}
+	AfxMessageBox(TEXT("[server] WSAStartup success ..."));
+}
+
+#define MAX_BUF_SIZE 4096
 UINT CMy01MyServerDlg::ThreadProc(LPVOID lpParam) {
+	TCHAR szBuf[MAX_BUF_SIZE] = {0};
+	SOCKET ArrSocket[WSA_MAXIMUM_WAIT_EVENTS] = { 0 };
+	WSAEVENT ArrEvent[WSA_MAXIMUM_WAIT_EVENTS] = { 0 };
+	DWORD dwTotal = 0, dwIndex = 0;
+	WSANETWORKEVENTS m_NetWorkEvents = {0};
+	CMy01MyServerDlg* pServer = (CMy01MyServerDlg*)lpParam;
+
+	pServer->WinSockInit();
+	pServer->m_ServerSocket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+	if (pServer->m_ServerSocket == INVALID_SOCKET) {
+		AfxMessageBox(TEXT("新建套接字失败"));
+		goto __Error_End;
+	}
+
+	pServer->m_Addr.sin_family = AF_INET;//IPV4
+	pServer->m_Addr.sin_addr.s_addr = INADDR_ANY;//自动绑定本机IP地址
+	pServer->m_Addr.sin_port = htons(8000);//端口8000
+
+	if (bind(pServer->m_ServerSocket, (const sockaddr*)&pServer->m_Addr, sizeof(pServer->m_Addr)) == SOCKET_ERROR) {
+		AfxMessageBox(TEXT("套接字绑定地址和端口失败"));
+		goto __Error_End;
+	}
+	// 创建事件
+	WSAEVENT m_ListenEvent = WSACreateEvent();
+	// 套接字绑定窗口 绑定事件 绑定操作
+	WSAEventSelect(pServer->m_ServerSocket, m_ListenEvent, FD_ACCEPT | FD_CLOSE);
+	// 监听
+	if (listen(pServer->m_ServerSocket, SOMAXCONN) == SOCKET_ERROR) {
+		AfxMessageBox(TEXT("监听套接字失败"));
+		goto __Error_End;
+	}
+
+	ArrSocket[dwTotal] = pServer->m_ServerSocket;
+	ArrEvent[dwTotal] = m_ListenEvent;
+	++dwTotal;
+
+	pServer->m_Exit = false;
+	while (!pServer->m_Exit) {
+		dwIndex = WSAWaitForMultipleEvents(dwTotal, ArrEvent, FALSE, 100, FALSE);
+		if (dwIndex == WSA_WAIT_TIMEOUT) {
+			continue;
+		}
+		WSAEnumNetworkEvents(ArrSocket[dwIndex-WSA_WAIT_EVENT_0], ArrEvent[dwIndex-WSA_WAIT_EVENT_0], &m_NetWorkEvents);
+		//客户端连接
+		if (m_NetWorkEvents.lNetworkEvents & FD_ACCEPT) {
+			if (m_NetWorkEvents.iErrorCode[FD_ACCEPT_BIT] != 0) {
+				continue;
+			}
+			pServer->m_ClientSocket = accept(ArrSocket[dwIndex - WSA_WAIT_EVENT_0], NULL, NULL);
+			if (pServer->m_ClientSocket == INVALID_SOCKET) {
+				continue;
+			}
+			WSAEVENT newEvent = WSACreateEvent();
+			WSAEventSelect(pServer->m_ClientSocket, newEvent, FD_READ | FD_WRITE | FD_CLOSE);
+
+			ArrSocket[dwTotal] = pServer->m_ClientSocket;
+			ArrEvent[dwTotal] = newEvent;
+			++dwTotal;
+		}
+		// 接受数据
+		if (m_NetWorkEvents.lNetworkEvents & FD_READ) {
+			if (m_NetWorkEvents.iErrorCode[FD_ACCEPT_BIT] != 0) {
+				continue;
+			}
+			recv(ArrSocket[dwIndex - WSA_WAIT_EVENT_0], (char *)szBuf, MAX_BUF_SIZE, 0);
+			pServer->ShowMsg(szBuf);
+		}
+		// 发送数据
+		if (m_NetWorkEvents.lNetworkEvents & FD_WRITE) {
+			if (m_NetWorkEvents.iErrorCode[FD_ACCEPT_BIT] != 0) {
+				continue;
+			}
+			send(ArrSocket[dwIndex - WSA_WAIT_EVENT_0], (char*)szBuf, MAX_BUF_SIZE, 0);
+		}
+		// 关闭套接字
+		if (m_NetWorkEvents.lNetworkEvents & FD_CLOSE) {
+			if (m_NetWorkEvents.iErrorCode[FD_ACCEPT_BIT] != 0) {
+				continue;
+			}
+			closesocket(ArrSocket[dwIndex - WSA_WAIT_EVENT_0]);
+			//WSACloseEvent();
+		}
+	}
 
 	return 0;
+
+__Error_End:
+	if (pServer->m_ServerSocket != INVALID_SOCKET) {
+		closesocket(pServer->m_ServerSocket);
+	}
+	WSACleanup();
+	return -1;
 }

@@ -17,6 +17,11 @@ $(SolutionDir)../bintemp/$(Platform)/$(ProjectName)/$(Configuration)/
 
 ## 01MyServer
 
+```
+事件选择模型
+WSAEventSelect
+```
+
 
 
 
